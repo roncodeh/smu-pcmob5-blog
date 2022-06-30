@@ -1,9 +1,13 @@
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { AsyncStorage, Button, StyleSheet, Text, View } from "react-native";
 import { commonStyles } from "../styles/commonStyles";
+import Asyncstorage from '@react-native-async-storage/async-storage';
 
 export default function AccountScreen({ navigation }) {
-  function signOut() {}
+  function signOut() {
+    Asyncstorage.removeItem("token");
+    navigation.navigate("SignIn")
+  }
 
   return (
     <View style={commonStyles.container}>
