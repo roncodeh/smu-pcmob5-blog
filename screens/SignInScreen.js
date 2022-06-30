@@ -8,7 +8,9 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  AsyncStorage,
 } from "react-native";
+import Asyncstorage from '@react-native-async-storage/async-storage';
 
 export default function SignInScreen({ navigation }) {
   const [username, setUsername] = useState("");
@@ -17,6 +19,8 @@ export default function SignInScreen({ navigation }) {
 
   function login() {
     Keyboard.dismiss();
+    Asyncstorage.setItem("token", "demo_token");
+    navigation.navigate("Account");
     // do stuff here to log in
   }
 
