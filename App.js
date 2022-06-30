@@ -17,22 +17,24 @@ export default function App() {
   async function loadtoken() {
     const token = await Asyncstorage.getItem("token")
     if (token) setSignedIn(true);
-  setLoading(false);
+    setLoading(false);
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     loadtoken();
   }, []);
 
   return loading ? (
-
     <View style={styles.container}>
       <ActivityIndicator />
     </View>
-
   ) : (
     <NavigationContainer>
-      <Stack.Navigator mode="modal" headerMode="none">
+      <Stack.Navigator
+        mode="modal"
+        headerMode="none"
+        initialRouteName={signedIn ? "Account" : "SignIn"}
+      >
         <Stack.Screen component={AccountScreen} name="Account" />
         <Stack.Screen component={SignInScreen} name="SignIn" />
       </Stack.Navigator>
